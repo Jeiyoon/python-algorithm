@@ -1,4 +1,4 @@
-# Python algorithm
+# Python-algorithm
 
 ## Material
 
