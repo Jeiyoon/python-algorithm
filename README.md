@@ -2,10 +2,12 @@
 
 ## Material
 
-- Book : [파이썬 알고리즘 인터뷰](https://github.com/onlybooks/algorithm-interview)
-<!-- - 교재 2: [이것이 취업을 위한 코딩 테스트다 with Python](https://github.com/ndb796/python-for-coding-test) -->
+- Book
+ - [파이썬 알고리즘 인터뷰](https://github.com/onlybooks/algorithm-interview) 
+ - [이것이 취업을 위한 코딩 테스트다 with Python](https://github.com/ndb796/python-for-coding-test)
+
 - Programmers: https://programmers.co.kr/learn/challenges
-<!-- 
+
 ## 스케쥴
 
 - https://tall-hardware-692.notion.site/Python-Algorithm-Study-TAVE-ec9a8e62734d4297bdfc54bdf84768bf -->
