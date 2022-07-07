@@ -4,26 +4,19 @@
 from typing import List
 
 def solution(rows: int, columns: int, queries: List[List[int]]) -> List[int]:
-  # row: vertical
-  # col: horizontal
+  # row: vertical, col: horizontal
   answer = []
 
   # 1. (rows x cols) matrix
   matrix = [[j+i+1 for j in range(columns)] for i in range(0, rows * rows, rows)]
 
-  print(matrix[0])
-  print(matrix[1])
-  print(matrix[2])
-  print(" ")
-
   # 2. rotation
   for query in queries:
     answer_candidate = []
     x1, y1, x2, y2 = query[0] - 1, query[1] - 1, query[2] - 1, query[3] - 1
-    print("x1, y1, x2, y2: ", x1, y1, x2, y2)
-    mini_row = y2 - y1 + 1
-    mini_col = x2 - x1 + 1
-
+    mini_row = x2 - x1 + 1 
+    mini_col = y2 - y1 + 1 
+  
     done = False
     phase = 1
     up_right_block = matrix[x1][y2]
@@ -31,35 +24,21 @@ def solution(rows: int, columns: int, queries: List[List[int]]) -> List[int]:
     while not done:  
       # phase 1: →
       if phase == 1:
-        for idx in range(mini_col - 1):
+        for idx in range(mini_col - 1): # 0 1
           matrix[x1][y2 - idx] = matrix[x1][y2 - idx - 1]
         phase = 2
-      print(matrix[0])
-      print(matrix[1])
-      print(matrix[2])
-      print(" ")
 
       # phase 2: ↑
       if phase == 2:
-        for idx in range(mini_row - 1):
+        for idx in range(mini_row - 1): # 0 1 2
           matrix[x1 + idx][y1] = matrix[x1 + idx + 1][y1]
         phase = 3
-
-      print(matrix[0])
-      print(matrix[1])
-      print(matrix[2])
-      print(" ")
 
       # phase 3: ←
       if phase == 3:
         for idx in range(mini_col - 1):  
           matrix[x2][y1 + idx] = matrix[x2][y1 + idx + 1]
         phase = 4
-      
-      print(matrix[0])
-      print(matrix[1])
-      print(matrix[2])
-      print(" ")
 
       # phase 4: ↓
       if phase == 4:
@@ -68,35 +47,32 @@ def solution(rows: int, columns: int, queries: List[List[int]]) -> List[int]:
         # exception
         matrix[x1 + 1][y2] = up_right_block
 
-      print(matrix[0])
-      print(matrix[1])
-      print(matrix[2])
-
       done = True
     
     # 3. min number
     for y in range(y1, y2 + 1):
       for x in range(x1, x2 + 1):
+        # exception: central hole
         answer_candidate.append(matrix[x][y])
     print("answer_candidate: ", answer_candidate)
-    print("############################")
+    print("min: ", min(answer_candidate))
     answer.append(min(answer_candidate))
 
   return answer
 
-# result = [8, 10, 25]
-rows = 6
-columns = 6
-queries = [[2,2,5,4],[3,3,6,6],[5,1,6,3]]
+# # result = [8, 10, 25]
+# rows = 6
+# columns = 6
+# queries = [[2,2,5,4],[3,3,6,6],[5,1,6,3]]
 
 # # result = [1, 1, 5, 3]
 # rows = 3
 # columns = 3
 # queries = [[1,1,2,2],[1,2,2,3],[2,1,3,2],[2,2,3,3]]
 
-# # result = [1]
-# rows = 100
-# columns = 97
-# queries = [[1,1,100,97]]
+# result = [1]
+rows = 100
+columns = 97
+queries = [[1,1,100,97]]
 
 print(solution(rows, columns, queries))
