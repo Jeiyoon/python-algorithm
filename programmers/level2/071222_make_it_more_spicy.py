@@ -1,7 +1,7 @@
 # date: 2022.07.12
 # author: jeiyoon
 """
-효율성 테스트 탈락
+효율성 테스트 탈락 -> heap으로 풀어야됨
 """
 from typing import List
 from collections import deque
