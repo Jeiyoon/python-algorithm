@@ -1,44 +1,35 @@
 # date: 2022.07.12
 # author: jeiyoon
-"""
-효율성 테스트 탈락 -> heap으로 풀어야됨
-"""
 from typing import List
-from collections import deque
+import heapq
 
 def solution(scoville: List[int], K: int) -> int:
   done = False
-  count = 0
+  count = 0  
+  scoville.sort()
+  heapq.heapify(scoville)
 
   while not done:
-    # 1. all food >= K
-    check = [k for k in scoville if k >= K]
-    
-    if len(check) != len(scoville):
-      if len(scoville) == 1: # impossible
-        return -1
-      
-      count += 1
-      # 2. find min and second-min values
-      temp = deque(sorted(scoville))
-      min_val = temp.popleft()
-      second_min_val = temp.popleft()
-      
-      # 3. new food
-      new_val = min_val + (second_min_val * 2)
-
-      scoville.pop(scoville.index(min_val))
-      scoville.pop(scoville.index(second_min_val))
-      
-      scoville.append(new_val)    
-
-    else: # all food are bigger than K
+    # end condition: 1
+    if scoville[0] >= K:
       done = True
+      continue
+
+    # end condition: 2
+    if len(scoville) == 1 and scoville[0] < K:
+      return -1
+    
+    min_val = heapq.heappop(scoville)
+    second_min_val =heapq.heappop(scoville)
+    new_val = min_val + (second_min_val * 2)
+    heapq.heappush(scoville, new_val)
+
+    count += 1
 
   return count
 
 # return = 2
-scoville = [1, 2, 3, 9, 10, 12]
+scoville = [1, 3, 2, 9, 10, 12]
 K = 7
 
 print(solution(scoville, K))
