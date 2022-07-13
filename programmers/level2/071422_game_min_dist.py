@@ -1,4 +1,4 @@
-# date: 2022.07.13
+# date: 2022.07.14
 # author: jeiyoon
 """
 maps is a 2-dimensional array containing the status of the game map with n x m size. n and m are natural number between 1 and 100.
