@@ -1,34 +1,30 @@
 # date: 2022.07.13
 # author: jeiyoon
-# 타임 아웃
+# https://www.daleseo.com/python-global-nonlocal/
 from typing import List
-from itertools import permutations
-from copy import deepcopy
 
 def solution(numbers: List[int], target: int) -> int:
-  answer = []
-  temp = []
-  minus_and_plus_list = [n for n in range(len(numbers))]
-  # print(minus_and_plus_list)
-  
-  for minus_num in range(len(numbers) + 1): # # of minus
-    # print("################################")
-    # print("minus_num: ", minus_num)
-    # print("################################")
-    for indices in list(permutations(minus_and_plus_list, minus_num)): # each permutation
-      temp = deepcopy(numbers)
-      # print("indices: ", indices)
-      for idx in indices:
-        # print("idx: ", idx)
-        temp[idx] = -temp[idx]
-        # print("temp: ", temp)
-      if sum(temp) == target:
-        # print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$HERE")
-        if temp not in answer:
-          answer.append(temp)
-  
-  # print("answer: ", answer)
-  return len(answer)
+  answer = 0
+  idx = 0
+  result = 0
+
+  def dfs(idx: int, sign: int, result: int) -> None:
+    nonlocal answer
+    
+    if idx == len(numbers):
+        if result == target:
+            answer = answer + 1
+        return
+
+    result = result + (numbers[idx] * sign)
+    
+    dfs(idx + 1,  1, result)
+    dfs(idx + 1, -1, result)
+
+  dfs(idx, -1, result)
+  dfs(idx, 1, result)
+      
+  return int(answer / 2)
 
 
 # return 5
