@@ -1,4 +1,4 @@
-# date: 2022.07.14
+# date: 2022.07.15
 # author: jeiyoon
 # https://smlee729.github.io/python/algorithm/2015/03/14/1-number-of-solutions.html
 # https://kin.naver.com/qna/detail.naver?d1id=11&dirId=11040302&docId=354970113&qb=7KSR67O17KGw7ZWpIOqzhOyImA==&enc=utf8&section=kin.ext&rank=1&search_sort=0&spq=0
