@@ -1,1 +1,2 @@
 - [최소공배수](https://github.com/Jeiyoon/python-algorithm/blob/main/snippets/lcm.py)
+- [행렬의 곱셈](https://github.com/Jeiyoon/python-algorithm/blob/main/snippets/matmul.py)
